@@ -32,7 +32,7 @@ main {
   gap: 1.5rem;
 }
 
-.input_section {
+.input_section, .kotak_alat {
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -49,7 +49,8 @@ main {
   margin: 8px 0;
 }
 
-.input_section > form > button {
+.input_section > form > button,
+.search_section > form > button {
   width: 100%;
   padding: .5rem 1.5rem;
   font-weight: 700;
@@ -63,7 +64,8 @@ main {
   border-radius: 5px;
 }
 
-.input_section > form > button:hover {
+.input_section > form > button:hover,
+.search_section > form > button:hover {
   border: 3px solid transparent;
   background-color: transparent;
   color: #FF6500;
@@ -90,6 +92,23 @@ p, input, select, button {
   display: flex;
   flex-direction: column;
   padding: 16px;
+  align-items: center;
   border: 1px solid black;
   border-radius: 10px;
 }
+
+.search_section > form {
+  width: 80%;
+  display: flex;
+  gap: 10px;
+}
+
+.search_section > form > input{
+  flex: 3 1 80%;
+}
+
+.search_section > form > button{
+  flex: 1 1 20%;
+}
+
+
