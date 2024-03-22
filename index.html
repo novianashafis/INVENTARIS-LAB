@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meTa charset="utf-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INVENTARIS LAB FISIKA UMRI</title>
 
     <link rel="stylesheet" href="style.css">
@@ -18,8 +17,8 @@
         <h2>Input Data</h2>
         <form id="inputAlat">
           <div class="input">
-            <label for="typeDropdown">Kategori</label>
-            <select id="typeDropdown">
+            <label for="inputItemCategory">Kategori</label>
+            <select id="inputItemCategory">
               <option value="fisikadasar">FISIKA DASAR</option>
               <option value="instrumentasi">INSTRUMENTASI</option>
               <option value="lingkungan">LINGKUNGAN</option>
@@ -27,20 +26,16 @@
             </select>
           </div>
           <div class="input">
-            <label for="inputNamaAlat">Nama Alat</label>
-            <input id="inputNamaAlat" type="text" required>
+            <label for="inputItemName">Nama Alat</label>
+            <input id="inputItemName" type="text" required>
           </div>
           <div class="input">
-            <label for="inputTotal">Total</label>
-            <input id="inputTotal" type="number" required>
+            <label for="inputItemGood">Keadaan Baik</label>
+            <input id="inputItemGood" type="number" required>
           </div>
           <div class="input">
-            <label for="inputBagus">Keadaan Baik</label>
-            <input id="inputBagus" type="number" required>
-          </div>
-          <div class="input">
-            <label for="inputRusak">Keadaan Rusak</label>
-            <input id="inputRusak" type="number" required>
+            <label for="inputItemBad">Keadaan Rusak</label>
+            <input id="inputItemBad" type="number" required>
           </div>
           <button id="inputSubmit" type="submit">SUBMIT</button>
         </form>
@@ -54,24 +49,24 @@
         </form>
       </section>
 
-      <section class="kotak_alat">
+      <section class="item_box">
         <h2>FISIKA DASAR</h2>
-        <div id="fisikadasar" class="list_alat"></div>
+        <div id="fisdas" class="item_list"></div>
       </section>
       
-      <section class="kotak_alat">
+      <section class="item_box">
         <h2>INSTRUMENTASI</h2>
-        <div id="instrumentasi" class="list_alat"></div>
+        <div id="instrumentasi" class="item_list"></div>
       </section>
 
-      <section class="kotak_alat">
+      <section class="item_box">
         <h2>LINGKUNGAN</h2>
-        <div id="lingkungan" class="list_alat"></div>
+        <div id="lingkungan" class="item_list"></div>
       </section>
 
-      <section class="kotak_alat">
+      <section class="item_box">
         <h2>MATERIAL</h2>
-        <div id="material" class="list_alat"></div>
+        <div id="material" class="item_list"></div>
       </section>
     </main>
 

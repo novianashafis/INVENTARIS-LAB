@@ -32,7 +32,7 @@ main {
   gap: 1.5rem;
 }
 
-.input_section, .kotak_alat {
+.input_section, .item_box {
   display: flex;
   flex-direction: column;
   padding: 16px;
