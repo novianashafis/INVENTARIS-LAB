@@ -25,8 +25,8 @@ input, button, select {
 main {
   display: flex;
   flex-flow: column nowrap;
-  max-width: 800px;
-  width: 80%;
+  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 16px;
   gap: 1.5rem;
@@ -110,5 +110,36 @@ p, input, select, button {
 .search_section > form > button{
   flex: 1 1 20%;
 }
+
+.item_box > h2 {
+  color: #FF6500;
+}
+
+.item_box > .item_list > .item {
+  padding: 8px 16px 16px 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.item_box > .item_list > .item > div {
+  display: flex;
+  width: 100%;
+}
+
+.item_box > .item_list > .item > div > h3 {
+  margin: 5px 0;
+  color: #FF6500;
+}
+
+.item_box > .item_list > .item > div > label {
+  flex: .5 1 50%;
+}
+
+.item_box > .item_list > .item > div > div {
+  flex: 1 1 10%;
+}
+
+
 
 
