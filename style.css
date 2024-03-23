@@ -25,7 +25,7 @@ input, button, select {
 main {
   display: flex;
   flex-flow: column nowrap;
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   margin: 0 auto;
   padding: 16px;
@@ -98,17 +98,19 @@ p, input, select, button {
 }
 
 .search_section > form {
-  width: 80%;
+  width: 100%;
   display: flex;
   gap: 10px;
 }
 
 .search_section > form > input{
-  flex: 3 1 80%;
+  flex: 1 1;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 .search_section > form > button{
-  flex: 1 1 20%;
+  flex: .1 1;
 }
 
 .item_box > h2 {
@@ -133,11 +135,12 @@ p, input, select, button {
 }
 
 .item_box > .item_list > .item > div > label {
-  flex: .5 1 50%;
+  flex: .5 1;
 }
 
 .item_box > .item_list > .item > div > div {
-  flex: 1 1 10%;
+  flex: .5 1;
+  text-align: right;
 }
 
 

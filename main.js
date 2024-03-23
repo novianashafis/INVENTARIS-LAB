@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const itemList = [];
   const RENDER_EVENT = 'render-list'
 
-  inputAlat.addEventListener('submit', function (event) {
+  inputItem.addEventListener('submit', function (event) {
     event.preventDefault()
     addItem()
   })
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
       bad: parseInt(itemBad),
       category: itemCategory
     }
-    console.log(itemObject)
     itemList.push(itemObject)
     document.dispatchEvent(new Event(RENDER_EVENT))
+    saveData()
   }
 
   function makeItem(itemObject) {
@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const goodContainer = document.createElement('div');
     const goodLabel = document.createElement('label');
     const goodText = document.createElement('div');
-    goodLabel.innerText = 'Keadaan Baik:';
+    goodLabel.innerText = 'Baik:';
     goodText.innerText = itemObject.good;
     goodContainer.append(goodLabel,goodText);
 
     const badContainer = document.createElement('div')
     const badLabel = document.createElement('label');
     const badText = document.createElement('div');
-    badLabel.innerText = 'Keadaan Tidak Baik:';
+    badLabel.innerText = 'Tidak Baik:';
     badText.innerText = itemObject.bad;
     badContainer.append(badLabel,badText);
 
@@ -79,4 +79,36 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   })
+
+
+  const STORAGE_KEY = "inventaris-app";
+
+  function isStorageExist() {
+    if (typeof (Storage) === undefined) {
+      alert('browser tidak mendukung local storage');
+      return false;
+    }
+    return true;
+
+  }
+
+  function saveData () {
+    if (isStorageExist()) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(itemList))
+    }
+  }
+
+  function loadDataFromStorage() {
+    let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (data !== null) {
+      for (const item of data) {
+        itemList.push(item);
+      }
+    }
+    document.dispatchEvent(new Event(RENDER_EVENT));
+  }
+
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  }
 })
