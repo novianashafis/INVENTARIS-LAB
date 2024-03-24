@@ -47,6 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
     badText.innerText = itemObject.bad;
     badContainer.append(badLabel,badText);
 
+    const editButton = document.createElement('button');
+    editButton.classList.add('edit_button');
+    editButton.innerText = 'Edit';
+    editButton.addEventListener('click', function (){
+      editItem(itemObject.id);
+    })
+
     const container = document.createElement('article');
     container.classList.add('item');
     container.append(nameContainer,goodContainer,badContainer);
@@ -80,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   })
 
-
   const STORAGE_KEY = "inventaris-app";
 
   function isStorageExist() {
@@ -89,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return false;
     }
     return true;
-
   }
 
   function saveData () {
