@@ -143,6 +143,14 @@ p, input, select, button {
   text-align: right;
 }
 
+input[disabled] {
+  background-color: transparent;
+  border: none;
+  margin: 5px 0;
+  color: #FF6500;
+}
+
+
 
 
 

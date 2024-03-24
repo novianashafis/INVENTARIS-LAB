@@ -28,36 +28,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function makeItem(itemObject) {
-    const nameContainer = document.createElement('div')
-    const textName = document.createElement('h3')
-    textName.innerText = itemObject.name;
+    const nameContainer = document.createElement('div');
+    const textName = document.createElement('input');
+    textName.disabled = true;
+    textName.type = 'text';
+    textName.value = itemObject.name;
     nameContainer.append(textName)
 
-    const goodContainer = document.createElement('div');
-    const goodLabel = document.createElement('label');
-    const goodText = document.createElement('div');
-    goodLabel.innerText = 'Baik:';
-    goodText.innerText = itemObject.good;
-    goodContainer.append(goodLabel,goodText);
-
-    const badContainer = document.createElement('div')
-    const badLabel = document.createElement('label');
-    const badText = document.createElement('div');
-    badLabel.innerText = 'Tidak Baik:';
-    badText.innerText = itemObject.bad;
-    badContainer.append(badLabel,badText);
-
-    const editButton = document.createElement('button');
-    editButton.classList.add('edit_button');
-    editButton.innerText = 'Edit';
-    editButton.addEventListener('click', function (){
-      editItem(itemObject.id);
+    const openEdit = document.createElement('button');
+    openEdit.innerText = 'edit';
+    openEdit.type = 'submit';
+    openEdit.addEventListener('click', function (event) {
+      event.preventDefault()
+      openEdit.innerText = 'save';
+      textName.disabled = false;
     })
 
-    const container = document.createElement('article');
+    const container = document.createElement('form');
     container.classList.add('item');
-    container.append(nameContainer,goodContainer,badContainer);
+    container.append(nameContainer,openEdit);
     container.setAttribute('id', `item${itemObject.id}`)
+    container.addEventListener('submit', function (event) {
+      console.log('masuk');
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    })
 
     return container
   }
