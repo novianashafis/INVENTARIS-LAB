@@ -37,23 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const openEdit = document.createElement('button');
     openEdit.innerText = 'edit';
-    openEdit.type = 'submit';
-    openEdit.addEventListener('click', function (event) {
-      event.preventDefault()
-      openEdit.innerText = 'save';
-      textName.disabled = false;
+    openEdit.addEventListener('click', function () {
+      editItem(itemObject.id)
     })
 
-    const container = document.createElement('form');
+    const container = document.createElement('div');
     container.classList.add('item');
     container.append(nameContainer,openEdit);
     container.setAttribute('id', `item${itemObject.id}`)
-    container.addEventListener('submit', function (event) {
-      console.log('masuk');
-      document.dispatchEvent(new Event(RENDER_EVENT));
-    })
 
     return container
+  }
+
+  function editItem (itemId) {
+    const container = document.getElementById(`item${itemId}`);
+
+    const name = container.querySelectorAll('input')[0]
+    name.disabled = false;
+
+    const saveEdit = container.querySelector('button');
+    saveEdit.innerText = 'save';
+    saveEdit.addEventListener('click', function () {
+      name.disabled = true;
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    })
   }
 
   document.addEventListener(RENDER_EVENT, function() {
