@@ -11,7 +11,7 @@ body, input, select, button {
 }
 
 input, button, select {
-  font-size: 16px;
+  font-size: 1rem;
   margin: 3px 0;
   padding: 3px;
 }
@@ -30,14 +30,14 @@ main {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  padding: 16px;
+  padding: .8rem;
   gap: 1.5rem;
 }
 
 .input_section, .item_box {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: .8rem;
   border: 1px solid black;
   border-radius: 10px;
 }
@@ -112,36 +112,27 @@ main {
 }
 
 .item_box > .item_list > .item {
-  padding: 8px 16px 16px 16px;
+  padding: .8rem;
   border: 1px solid black;
   border-radius: 5px;
-  margin: 10px 0;
+  margin: .8rem 0;
 }
 
 .item_box > .item_list > .item > div {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
   width: 100%;
   align-items: center;
 }
 
 .item_box > .item_list > .item > input {
-  margin: 5px 0;
   color: #FF6500;
   width: 100%;
   font-weight: bold;
 }
 
-.item_box > .item_list > .item > div > label {
-  flex: .5 1;
-}
-
 .item_box > .item_list > .item > div > input {
-  flex: .5 1;
   text-align: right;
-}
-
-.item_box > .item_list > .item > div > select{
-  flex: .5 1;
 }
 
 input[disabled] {

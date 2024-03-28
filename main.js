@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     name.disabled = false;
     good.disabled = false;
     bad.disabled = false;
-    categoryContainer.style.display = 'flex';
+    categoryContainer.style.display = 'grid';
 
     const saveEdit = container.querySelector('button');
     saveEdit.innerText = 'save';
