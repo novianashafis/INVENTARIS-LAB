@@ -44,6 +44,37 @@ document.addEventListener('DOMContentLoaded', function () {
     goodValue.value = itemObject.good;
     goodContainer.append(goodLabel,goodValue)
 
+    const badContainer = document.createElement('div');
+    const badLabel = document.createElement('label');
+    const badValue = document.createElement('input');
+    badLabel.innerText = 'Rusak';
+    badValue.disabled = true;
+    badValue.type = 'number'
+    badValue.value = itemObject.bad;
+    badContainer.append(badLabel,badValue)
+
+    const categoryContainer = document.createElement('div');
+    const categoryLabel = document.createElement('label');
+    const categoryValue = document.createElement('select');
+    categoryLabel.innerText = 'Kategori';
+    const categories = {
+      fisikadasar: 'FISIKA DASAR',
+      instrumentasi: 'INSTRUMENTASI',
+      lingkungan: 'LINGKUNGAN',
+      material: 'MATERIAL'
+    }
+
+    for (category in categories) {
+      option = document.createElement('option')
+      option.value = category;
+      option.text = categories[category]
+      categoryValue.appendChild(option)
+    }
+
+    categoryValue.disabled = true;
+    categoryValue.value = itemObject.category;
+    categoryContainer.append(categoryLabel, categoryValue)
+
     const openEdit = document.createElement('button');
     openEdit.innerText = 'edit';
     openEdit.addEventListener('click', function () {
@@ -52,29 +83,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameContainer,goodContainer,openEdit);
+    container.append(nameContainer,goodContainer,badContainer,categoryContainer,openEdit);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
   }
 
   function editItem (itemId) {
+    document.dispatchEvent(new Event(RENDER_EVENT));
+
     const container = document.getElementById(`item${itemId}`);
 
     const name = container.querySelectorAll('input')[0];
     const good = container.querySelectorAll('input')[1];
+    const bad = container.querySelectorAll('input')[2];
+    const category = container.querySelectorAll('select')[0];
     name.disabled = false;
     good.disabled = false;
+    bad.disabled = false;
+    category.disabled = false;
 
     const saveEdit = container.querySelector('button');
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
       name.disabled = true;
       good.disabled = true;
+      bad.disabled = true;
+      category.disabled = true;
       const item = findBook(itemId)
       if (item === null) return;
       item.name = name.value;
       item.good = good.value;
+      item.bad = bad.value;
+      item.category = category.value;
 
       document.dispatchEvent(new Event(RENDER_EVENT));
     })
