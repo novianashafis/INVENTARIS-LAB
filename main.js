@@ -29,15 +29,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function makeItem(itemObject) {
     const nameContainer = document.createElement('div');
-    const textName = document.createElement('input');
-    textName.disabled = true;
-    textName.type = 'text';
-    textName.value = itemObject.name;
-    nameContainer.append(textName)
+    const nameValue = document.createElement('input');
+    nameValue.disabled = true;
+    nameValue.type = 'text';
+    nameValue.value = itemObject.name;
+    nameContainer.append(nameValue)
 
     const goodContainer = document.createElement('div');
-    const labelGood = document.createElement('label');
-    const textGood = document.createElement('input')
+    const goodLabel = document.createElement('label');
+    const goodValue = document.createElement('input');
+    goodLabel.innerText = 'Baik';
+    goodValue.disabled = true;
+    goodValue.type = 'number'
+    goodValue.value = itemObject.good;
+    goodContainer.append(goodLabel,goodValue)
 
     const openEdit = document.createElement('button');
     openEdit.innerText = 'edit';
@@ -47,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameContainer,openEdit);
+    container.append(nameContainer,goodContainer,openEdit);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
@@ -56,16 +61,20 @@ document.addEventListener('DOMContentLoaded', function () {
   function editItem (itemId) {
     const container = document.getElementById(`item${itemId}`);
 
-    const name = container.querySelectorAll('input')[0]
+    const name = container.querySelectorAll('input')[0];
+    const good = container.querySelectorAll('input')[1];
     name.disabled = false;
+    good.disabled = false;
 
     const saveEdit = container.querySelector('button');
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
       name.disabled = true;
+      good.disabled = true;
       const item = findBook(itemId)
       if (item === null) return;
       item.name = name.value;
+      item.good = good.value;
 
       document.dispatchEvent(new Event(RENDER_EVENT));
     })
