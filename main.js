@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const categoryContainer = document.createElement('div');
     const categoryLabel = document.createElement('label');
     const categoryValue = document.createElement('select');
+    categoryContainer.style.display = 'none'
     categoryLabel.innerText = 'Kategori';
     const categories = {
       fisikadasar: 'FISIKA DASAR',
@@ -70,8 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
       option.text = categories[category]
       categoryValue.appendChild(option)
     }
-
-    categoryValue.disabled = true;
     categoryValue.value = itemObject.category;
     categoryContainer.append(categoryLabel, categoryValue)
 
@@ -97,25 +96,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const name = container.querySelectorAll('input')[0];
     const good = container.querySelectorAll('input')[1];
     const bad = container.querySelectorAll('input')[2];
-    const category = container.querySelectorAll('select')[0];
+    const category = container.querySelector('select');
+    const categoryContainer = container.querySelectorAll('div')[3];
     name.disabled = false;
     good.disabled = false;
     bad.disabled = false;
-    category.disabled = false;
+    categoryContainer.style.display = 'flex';
 
     const saveEdit = container.querySelector('button');
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
-      name.disabled = true;
-      good.disabled = true;
-      bad.disabled = true;
-      category.disabled = true;
       const item = findBook(itemId)
       if (item === null) return;
       item.name = name.value;
       item.good = good.value;
       item.bad = bad.value;
       item.category = category.value;
+      
+      name.disabled = true;
+      good.disabled = true;
+      bad.disabled = true;
+      categoryContainer.style.display = 'none';
 
       document.dispatchEvent(new Event(RENDER_EVENT));
     })
