@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
     textName.value = itemObject.name;
     nameContainer.append(textName)
 
+    const goodContainer = document.createElement('div');
+    const labelGood = document.createElement('label');
+    const textGood = document.createElement('input')
+
     const openEdit = document.createElement('button');
     openEdit.innerText = 'edit';
     openEdit.addEventListener('click', function () {
@@ -59,8 +63,21 @@ document.addEventListener('DOMContentLoaded', function () {
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
       name.disabled = true;
+      const item = findBook(itemId)
+      if (item === null) return;
+      item.name = name.value;
+
       document.dispatchEvent(new Event(RENDER_EVENT));
     })
+  }
+
+  function findBook(itemId) {
+    for (const item of itemList) {
+      if (item.id === itemId) {
+        return item;
+      }
+    }
+    return null;
   }
 
   document.addEventListener(RENDER_EVENT, function() {
