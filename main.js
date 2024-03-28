@@ -28,12 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function makeItem(itemObject) {
-    const nameContainer = document.createElement('div');
     const nameValue = document.createElement('input');
     nameValue.disabled = true;
     nameValue.type = 'text';
     nameValue.value = itemObject.name;
-    nameContainer.append(nameValue)
 
     const goodContainer = document.createElement('div');
     const goodLabel = document.createElement('label');
@@ -82,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameContainer,goodContainer,badContainer,categoryContainer,openEdit);
+    container.append(nameValue,goodContainer,badContainer,categoryContainer,openEdit);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
@@ -97,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const good = container.querySelectorAll('input')[1];
     const bad = container.querySelectorAll('input')[2];
     const category = container.querySelector('select');
-    const categoryContainer = container.querySelectorAll('div')[3];
+    const categoryContainer = container.querySelectorAll('div')[2];
     name.disabled = false;
     good.disabled = false;
     bad.disabled = false;
