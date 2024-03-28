@@ -120,7 +120,7 @@ main {
 
 .item_box > .item_list > .item > div {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 60%;
   width: 100%;
   align-items: center;
 }
