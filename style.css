@@ -12,8 +12,13 @@ body, input, select, button {
 
 input, button, select {
   font-size: 1rem;
-  margin: 3px 0;
-  padding: 3px;
+  margin: 3px 0px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button {
+  border: none;
 }
 
 .head_bar {
@@ -50,21 +55,16 @@ main {
 .input_section > form > button,
 .search_section > form > button {
   width: 100%;
-  padding: .5rem 1.5rem;
+  padding: .5rem .5rem;
   font-weight: 700;
   font-size: 1rem;
   color: white;
   background-color: #FF6500;
-  border: 3px solid transparent;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: all .1s ease-in-out;
-  border-radius: 5px;
 }
 
 .input_section > form > button:hover,
 .search_section > form > button:hover {
-  border: 3px solid transparent;
   background-color: transparent;
   color: #FF6500;
 }
@@ -74,8 +74,8 @@ main {
   display: block;
   width: 100%;
   padding: 8px;
-  border-radius: 5px;
   background-color: transparent;
+  border: 1px solid black;
 }
 
 .input_section > form > .input > label {
@@ -86,7 +86,7 @@ main {
 .search_section {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: .8rem;
   align-items: center;
   border: 1px solid black;
   border-radius: 10px;
@@ -94,18 +94,13 @@ main {
 
 .search_section > form {
   width: 100%;
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 70% 30%;
 }
 
 .search_section > form > input{
-  flex: 1 1;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-.search_section > form > button{
-  flex: .1 1;
+  padding: .5rem;
+  border: 1px solid black;
 }
 
 .item_box > h2 {
@@ -139,18 +134,15 @@ main {
 .item_box > .item_list > .item > .action {
   display: flex;
   width: 100%;
-  cursor: pointer;
 }
 
 .item_box > .item_list > .item > .action > button{
   flex: .5;
   justify-content: center;
   background-color: #eeeeee;
-  border-radius: 5px;
   border: 0;
   padding: .5rem;
-  margin-inline: .5rem;
-  cursor: pointer;
+  margin-inline: 1rem;
 }
 
 .item_box > .item_list > .item > .action > button:hover{

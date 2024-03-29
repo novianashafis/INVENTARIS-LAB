@@ -208,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
         materialList.append(itemElement)
       }
     }
+    searchItem()
   })
 
   const STORAGE_KEY = "inventaris-app";
