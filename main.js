@@ -78,9 +78,15 @@ document.addEventListener('DOMContentLoaded', function () {
       editItem(itemObject.id)
     })
 
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'delete';
+    deleteButton.addEventListener('click', function () {
+      deleteItem(itemObject.id)
+    })
+
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameValue,goodContainer,badContainer,categoryContainer,openEdit);
+    container.append(nameValue,goodContainer,badContainer,categoryContainer,openEdit,deleteButton);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
@@ -117,7 +123,17 @@ document.addEventListener('DOMContentLoaded', function () {
       categoryContainer.style.display = 'none';
 
       document.dispatchEvent(new Event(RENDER_EVENT));
+      saveData();
     })
+  }
+
+  function deleteItem(itemId) {
+    const itemIndex = findIndexItem(itemId)
+    if (itemIndex === -1) return;
+
+    itemList.splice(itemIndex,1);
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
   }
 
   function findBook(itemId) {
@@ -127,6 +143,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     return null;
+  }
+
+  function findIndexItem(itemId) {
+    for (const i in itemList) {
+      if (itemList[i].id === itemId) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   document.addEventListener(RENDER_EVENT, function() {
