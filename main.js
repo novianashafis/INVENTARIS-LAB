@@ -141,11 +141,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function confirmDelete(itemId) {
-    if (confirm('Are you sure you want to delete?')) {
+    if (confirm('Yakin ingin menghapus item ini?')) {
       deleteItem(itemId)
-      alert('Deleted successfully!');
+      alert('Berhasil menghapus!');
     } else {
-      alert('Deletion canceled.');
+      alert('Batal menghapus.');
+    }
+  }
+
+  const searchingItem = document.getElementById('searchAlat')
+  searchingItem.addEventListener('submit', function (event) {
+    event.preventDefault()
+    searchItem()
+  })
+
+  function searchItem() {
+    const keyword = document.getElementById('searchNamaAlat').value.toLowerCase()
+    for (const item of itemList) {
+      const itemContainer = document.getElementById(`item${item.id}`)
+      if (item.name.toLowerCase().includes(keyword) || keyword === '') {
+        itemContainer.style.display = 'block';
+      } else {
+        itemContainer.style.display = 'none';
+      }
     }
   }
 
