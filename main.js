@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'delete';
     deleteButton.addEventListener('click', function () {
-      deleteItem(itemObject.id)
+      confirmDelete(itemObject.id)
     })
 
     const buttonContainer = document.createElement('div');
@@ -138,6 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
     itemList.splice(itemIndex,1);
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
+  }
+
+  function confirmDelete(itemId) {
+    if (confirm('Are you sure you want to delete?')) {
+      deleteItem(itemId)
+      alert('Deleted successfully!');
+    } else {
+      alert('Deletion canceled.');
+    }
   }
 
   function findBook(itemId) {
