@@ -75,6 +75,7 @@ main {
   width: 100%;
   padding: 8px;
   border-radius: 5px;
+  background-color: transparent;
 }
 
 .input_section > form > .input > label {
@@ -133,6 +134,28 @@ main {
 
 .item_box > .item_list > .item > div > input {
   text-align: right;
+}
+
+.item_box > .item_list > .item > .action {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+
+.item_box > .item_list > .item > .action > button{
+  flex: .5;
+  justify-content: center;
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border: 0;
+  padding: .5rem;
+  margin-inline: .5rem;
+  cursor: pointer;
+}
+
+.item_box > .item_list > .item > .action > button:hover{
+  background-color: #FF6500;;
+  color: white;
 }
 
 input[disabled] {

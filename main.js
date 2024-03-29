@@ -84,9 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
       deleteItem(itemObject.id)
     })
 
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('action');
+    buttonContainer.append(openEdit,deleteButton)
+
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameValue,goodContainer,badContainer,categoryContainer,openEdit,deleteButton);
+    container.append(nameValue,goodContainer,badContainer,categoryContainer,buttonContainer);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
