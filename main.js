@@ -36,11 +36,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const goodContainer = document.createElement('div');
     const goodLabel = document.createElement('label');
     const goodValue = document.createElement('input');
+    const goodIncrease = document.createElement('button');
+    const goodDecrease = document.createElement('button');
     goodLabel.innerText = 'Baik';
     goodValue.disabled = true;
     goodValue.type = 'number'
     goodValue.value = itemObject.good;
-    goodContainer.append(goodLabel,goodValue)
+    goodIncrease.innerText = "+"
+    goodIncrease.addEventListener('click', function () {
+      goodValue.value = parseInt(goodValue.value) + 1;
+    })
+    goodDecrease.innerText = "-"
+    goodDecrease.addEventListener('click', function () {
+      current = parseInt(goodValue.value)
+      if (current > 0){
+        goodValue.value = parseInt(goodValue.value) - 1;
+      }
+    })
+    goodContainer.append(goodLabel,goodDecrease,goodValue,goodIncrease)
 
     const badContainer = document.createElement('div');
     const badLabel = document.createElement('label');
@@ -111,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bad.disabled = false;
     categoryContainer.style.display = 'grid';
 
-    const saveEdit = container.querySelector('button');
+    const saveEdit = container.querySelectorAll('button')[2];
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
       const item = findBook(itemId)
@@ -143,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function confirmDelete(itemId) {
     if (confirm('Yakin ingin menghapus item ini?')) {
       deleteItem(itemId)
-      alert('Berhasil menghapus!');
     } else {
       alert('Batal menghapus.');
     }

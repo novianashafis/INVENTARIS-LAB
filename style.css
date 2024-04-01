@@ -123,7 +123,12 @@ main {
 
 .item_box > .item_list > .item > div {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 10% 30% 10%;
+  width: 100%;
+  align-items: center;
+}
+
+.item_box > .item_list > .item > div > button {
   width: 100%;
   align-items: center;
 }
@@ -132,10 +137,6 @@ main {
   color: #FF6500;
   width: 100%;
   font-weight: bold;
-}
-
-.item_box > .item_list > .item > div > input {
-  text-align: right;
 }
 
 .item_box > .item_list > .item > .action {
@@ -161,6 +162,15 @@ input[disabled] {
   background-color: transparent;
   border: none;
   padding:0;
+}
+
+input[type=number] {
+  text-align: center;
+  margin-inline: 1rem;
+}
+
+input[type=number]::-webkit-inner-spin-button{
+  -webkit-appearance: none; /* Safari, Chrome */
 }
 
 
