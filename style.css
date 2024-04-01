@@ -14,11 +14,12 @@ input, button, select {
   font-size: 1rem;
   margin: 3px 0px;
   border-radius: 5px;
-  cursor: pointer;
+  padding: 8px;
 }
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 .head_bar {
