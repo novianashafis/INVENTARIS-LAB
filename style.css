@@ -30,9 +30,14 @@ input, select {
 .head_bar {
   display: flex;
   color: white;
-  padding-block: 1rem;
-  justify-content: center;
+  padding: 1rem;
   background-color:#FF6500;
+}
+
+.head_bar > h1 {
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 main {
@@ -58,19 +63,15 @@ main {
   color: black ;
 }
 
-.input_section > form > button,
-.search_section > form > button {
+.input_section > form > button{
   width: 100%;
-  padding: .5rem .5rem;
   font-weight: 700;
-  font-size: 1rem;
   color: white;
   background-color: #FF6500;
   transition: all .1s ease-in-out;
 }
 
-.input_section > form > button:hover,
-.search_section > form > button:hover {
+.input_section > form > button:hover {
   background-color: transparent;
   color: #FF6500;
 }
