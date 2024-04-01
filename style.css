@@ -22,6 +22,11 @@ button {
   cursor: pointer;
 }
 
+input, select {
+  border: 1px solid black;
+  background-color: transparent;
+}
+
 .head_bar {
   display: flex;
   color: white;
@@ -74,9 +79,6 @@ main {
 .input_section > form > .input > select{
   display: block;
   width: 100%;
-  padding: 8px;
-  background-color: transparent;
-  border: 1px solid black;
 }
 
 .input_section > form > .input > label {
@@ -95,13 +97,16 @@ main {
 
 .search_section > form {
   width: 100%;
+}
+
+.search_section > form > div{
+  width: 100%;
   display: grid;
   grid-template-columns: 70% 30%;
 }
 
-.search_section > form > input{
-  padding: .5rem;
-  border: 1px solid black;
+.search_section > form > div > button{
+  margin-left: 8px;
 }
 
 .item_box > h2 {
