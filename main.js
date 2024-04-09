@@ -33,40 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
     nameValue.type = 'text';
     nameValue.value = itemObject.name;
 
-    const goodContainer = document.createElement('div');
-    const goodLabel = document.createElement('label');
-    const goodValue = document.createElement('input');
-    const goodIncrease = document.createElement('button');
-    const goodDecrease = document.createElement('button');
-    goodLabel.innerText = 'Baik';
-    goodValue.disabled = true;
-    goodValue.type = 'number'
-    goodValue.value = itemObject.good;
-    goodIncrease.innerText = "+"
-    goodIncrease.addEventListener('click', function () {
-      goodValue.value = parseInt(goodValue.value) + 1;
-    })
-    goodDecrease.innerText = "-"
-    goodDecrease.addEventListener('click', function () {
-      current = parseInt(goodValue.value)
-      if (current > 0){
-        goodValue.value = parseInt(goodValue.value) - 1;
-      }
-    })
-    goodContainer.append(goodLabel,goodDecrease,goodValue,goodIncrease)
-
-    const badContainer = document.createElement('div');
-    const badLabel = document.createElement('label');
-    const badValue = document.createElement('input');
-    badLabel.innerText = 'Rusak';
-    badValue.disabled = true;
-    badValue.type = 'number'
-    badValue.value = itemObject.bad;
-    badContainer.append(badLabel,badValue)
-
     const categoryContainer = document.createElement('div');
     const categoryLabel = document.createElement('label');
     const categoryValue = document.createElement('select');
+    categoryContainer.classList.add('category')
     categoryContainer.style.display = 'none'
     categoryLabel.innerText = 'Kategori';
     const categories = {
@@ -75,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
       lingkungan: 'LINGKUNGAN',
       material: 'MATERIAL'
     }
-
     for (category in categories) {
       option = document.createElement('option')
       option.value = category;
@@ -88,22 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const openEdit = document.createElement('button');
     openEdit.innerText = 'edit';
     openEdit.addEventListener('click', function () {
-      editItem(itemObject.id)
+      editItem(itemObject.id);
     })
 
+    const buttonContainer = document.createElement('div');
     const deleteButton = document.createElement('button');
+    buttonContainer.classList.add('action');
     deleteButton.innerText = 'delete';
     deleteButton.addEventListener('click', function () {
       confirmDelete(itemObject.id)
     })
-
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('action');
     buttonContainer.append(openEdit,deleteButton)
 
     const container = document.createElement('div');
     container.classList.add('item');
-    container.append(nameValue,goodContainer,badContainer,categoryContainer,buttonContainer);
+    container.append(nameValue,createBadGood('baik',itemObject.good),createBadGood('Rusak',itemObject.bad),categoryContainer,buttonContainer);
     container.setAttribute('id', `item${itemObject.id}`)
 
     return container
@@ -113,18 +81,26 @@ document.addEventListener('DOMContentLoaded', function () {
     document.dispatchEvent(new Event(RENDER_EVENT));
 
     const container = document.getElementById(`item${itemId}`);
-
     const name = container.querySelectorAll('input')[0];
     const good = container.querySelectorAll('input')[1];
     const bad = container.querySelectorAll('input')[2];
     const category = container.querySelector('select');
     const categoryContainer = container.querySelectorAll('div')[2];
+
     name.disabled = false;
     good.disabled = false;
     bad.disabled = false;
     categoryContainer.style.display = 'grid';
 
-    const saveEdit = container.querySelectorAll('button')[2];
+    const goodContainer = container.getElementsByClassName('badgood_container')[0]
+    goodContainer.removeChild(good)
+    goodContainer.append(createButton(good))
+
+    const badContainer = container.getElementsByClassName('badgood_container')[1]
+    badContainer.removeChild(bad)
+    badContainer.append(createButton(bad))
+    
+    const saveEdit = container.getElementsByClassName('action')[0].querySelector('button')
     saveEdit.innerText = 'save';
     saveEdit.addEventListener('click', function () {
       const item = findBook(itemId)
@@ -142,6 +118,39 @@ document.addEventListener('DOMContentLoaded', function () {
       document.dispatchEvent(new Event(RENDER_EVENT));
       saveData();
     })
+  }
+
+  function createBadGood(text,value) {
+    const container = document.createElement('div');
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    container.classList.add('badgood_container');
+    label.innerText = text;
+    input.disabled = true;
+    input.type = 'number';
+    input.value = value;
+    container.append(label,input);
+    return container
+  }
+
+  function createButton(input) {
+    const container = document.createElement('div');
+    const increase = document.createElement('button');
+    const decrease = document.createElement('button');
+    container.classList.add('action_container');
+    increase.innerText = "+"
+    increase.addEventListener('click', function () {
+      input.value = parseInt(input.value) + 1;
+    })
+    decrease.innerText = "-"
+    decrease.addEventListener('click', function () {
+      current = parseInt(input.value)
+      if (current > 0){
+        input.value = parseInt(input.value) - 1;
+      }
+    })
+    container.append(decrease,input,increase)
+    return container
   }
 
   function deleteItem(itemId) {
